@@ -1,21 +1,94 @@
 body {
-  font-family: sans-serif;
+  box-sizing: border-box;
+  background: #551414;
+  color: #ddddda;
+  margin: 0;
 }
 
-a {
-  text-decoration: none;
+#header {
+  font-family: "Big Shoulders Display";
+  font-size: 72px;
+  text-shadow: 3px 3px 4px black;
+  width: 100%;
+  height: 190px;
+  left: 0px;
+  top: 0px;
+  border-bottom: 2px double #ddddda;
+  display: flex;
+  justify-content: space-between;
 }
 
-label {
+#header > img {
+  margin: 15px;
+}
+
+#navbar {
+  align-self: flex-end;
+  left: 50%;
+  width: 730px;
+  height: 90px;
+  padding: 8px 67px;
+  display: flex;
+  justify-content: space-around;
+}
+
+#main {
+  display: flex;
+  font-family: "Chathura";
+  font-size: 96px;
+}
+
+#main > * {
+  width: 50%;
+  height: 100%;
+}
+
+#main h1 {
+  display: inline;
+  font-size: 128px;
+  font-weight: normal;
+  margin-block: 0;
+  margin-inline: 0;
+}
+
+#search-default {
+  padding: 0 75px;
+}
+
+.title {
+  position: relative;
+  top: -20px;
+}
+
+.searchbar {
   display: block;
+  width: 92%;
+  height: 105px;
+  position: relative;
+  top: -45px;
+  font-size: 54px;
+  text-overflow: ellipsis;
 }
 
-nav a {
-  display: inline-block;
-  margin: 1em;
+#instructions ol {
+  position: relative;
+  top: -55px;
+  padding: 0 87px;
+  margin-block: 0;
+  margin-inline: 0;
+  list-style: none;
+  counter-reset: li;
 }
 
-form div {
-  margin: 1em;
+li::before {
+  content: counter(li) '.';
+  color: #a73638;
   display: inline-block;
+  width: 0.5em;
+  margin-left: -0.5em;
+}
+
+li {
+  line-height: 75px;
+  counter-increment: li;
 }

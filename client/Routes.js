@@ -7,8 +7,7 @@ const RoutesComp = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<MainSearch />}>
-        </Route>
+        <Route path="/" element={<MainSearch />} />
       </Routes>
     </BrowserRouter>
   );

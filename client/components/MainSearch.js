@@ -1,7 +1,13 @@
 import React from 'react';
+import SearchQuery from './SearchQuery';
+import Instructions from './Instructions'
+
 const MainSearch = () => {
   return (
-    <div>MAIN SEARCH PLACEHOLDER</div>
+    <div id="main">
+      <SearchQuery />
+      <Instructions />
+    </div>
   );
 };
 
