@@ -23,4 +23,5 @@ module.exports = {
   watchOptions: {
     stdin: true,
   },
+  mode: 'production'
 }
