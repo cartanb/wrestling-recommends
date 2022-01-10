@@ -20,10 +20,10 @@ router.get('/results', async (req, res, next) => {
   const result = await db
     try {
       const queryResult = await db.session().run(
-        'MATCH (startMatch:Match) WHERE startMatch.name = $matchName WITH startMatch MATCH (startMatch)-[:WORKED]-()-[:WORKED]-(newMatch:Match) WHERE startMatch <> newMatch WITH startMatch, apoc.number.parseFloat(startMatch.rating) AS startRating, newMatch, apoc.number.parseFloat(newMatch.rating) AS newRating RETURN newMatch.name, abs(startRating - newRating) AS distance, count(newMatch) as inCommon ORDER BY distance, inCommon DESC',
+        'MATCH (startMatch:Match) WHERE apoc.text.urldecode(startMatch.name) = $matchName WITH startMatch MATCH (startMatch)-[:WORKED]-()-[:WORKED]-(newMatch:Match) WHERE startMatch <> newMatch WITH startMatch, apoc.number.parseFloat(startMatch.rating) AS startRating, newMatch, apoc.number.parseFloat(newMatch.rating) AS newRating RETURN newMatch.name, newMatch.id, abs(startRating - newRating) AS distance, count(newMatch) as inCommon ORDER BY distance, inCommon DESC',
         { matchName: req.query.m }
       )
-      const parsedResult = queryResult.records.map((record) => record.get(0))
+      const parsedResult = queryResult.records.map((record) => [record.get(0), record.get(1)])
       res.json(parsedResult)
     } catch (error) {
       next(error)
