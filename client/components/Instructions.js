@@ -9,10 +9,6 @@ const Instructions = () => {
         <li>Wait for our database to work its magic</li>
         <li>Get matches back!</li>
       </ol>
-      <div id="disclaimer">
-        <p>Disclaimer:</p>
-        <p>I'm sorry if the site recommends you a match with one or more cancelled wrestlers.</p>
-      </div>
     </div>
   );
 };

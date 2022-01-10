@@ -116,7 +116,6 @@ input[type="text"] {
   width: 85%;
   padding: 0 16px;
   border-radius: 8px;
-  cursor: pointer;
 }
 
 #fuzz-results li:first {
@@ -181,11 +180,6 @@ li {
   color: #a73638;
 }
 
-#results li a {
-  text-decoration: none;
-  color: #ddddda;
-}
-
 #start-match {
   width: 515px;
   line-height: 75px;
@@ -206,14 +200,4 @@ li {
   margin-inline: 0;
   margin-top: 36px;
   line-height: 84px;
-}
-
-#disclaimer {
-  font-size: 32px;
-}
-
-#disclaimer p {
-  margin-block: 0;
-  margin-inline: 0;
-  line-height: 28px;
 }

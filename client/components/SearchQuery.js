@@ -88,7 +88,7 @@ const SearchQuery = () => {
               {Array.isArray(fuzzResult)
                 ? fuzzResult.map((resultObj) => (
                     <li key="resultObj.item" onClick={handleClick}>
-                      {decodeURI(resultObj.item)}
+                      {resultObj.item}
                     </li>
                   ))
                 : fuzzResult}
