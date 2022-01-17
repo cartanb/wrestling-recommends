@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import "regenerator-runtime/runtime.js"
+import 'regenerator-runtime/runtime';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import store from './redux'
-import App from './App'
+import store from './redux';
+import App from './App';
 
 ReactDOM.render(
   <Provider store={store}>
@@ -12,5 +12,5 @@ ReactDOM.render(
       <App />
     </BrowserRouter>
   </Provider>,
-  document.getElementById('app')
+  document.getElementById('app'),
 );

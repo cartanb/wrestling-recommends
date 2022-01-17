@@ -1,13 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios'
-import regeneratorRuntime from "regenerator-runtime";
+import axios from 'axios';
 
 export const fetchMatchNames = createAsyncThunk(
   'search/fetch',
-  async (_arg, thunkAPI) => {
+  async () => {
     const { data } = await axios.get('/api/match/');
     return data;
-  }
+  },
 );
 
 const searchSlice = createSlice({
@@ -16,13 +15,13 @@ const searchSlice = createSlice({
   reducers: {
     setStartMatch: (state, action) => {
       state.startMatch = action.payload;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchMatchNames.fulfilled, (state, action) => {
       state.allMatches = action.payload;
-    })
-  }
+    });
+  },
 });
 
 const { actions, reducer } = searchSlice;

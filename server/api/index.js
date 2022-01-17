@@ -1,13 +1,13 @@
-const router = require('express').Router()
+const router = require('express').Router();
 
-//Routes
-router.use('/match/', require('./match'))
+// Routes
+router.use('/match/', require('./match'));
 
-//404 handling
+// 404 handling
 router.use((req, res, next) => {
-  const error = new Error('Not Found')
-  error.status = 404
-  next(error)
-})
+  const error = new Error('Not Found');
+  error.status = 404;
+  next(error);
+});
 
-module.exports = router
+module.exports = router;

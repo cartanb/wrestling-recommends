@@ -7,7 +7,6 @@ const SearchQuery = () => {
   const dispatch = useDispatch();
   const { allMatches, startMatch } = useSelector((state) => state.search);
 
-
   const [formVal, setFormVal] = useState('');
   const [fuzzResult, setFuzzResult] = useState([]);
   const [timeoutID, setTimeoutID] = useState(undefined);
@@ -28,7 +27,7 @@ const SearchQuery = () => {
     evt.preventDefault();
     const startQuery = formVal;
     clearAll();
-    dispatch(setStartMatch(formVal));
+    dispatch(setStartMatch(startQuery));
     dispatch(fetchResults(encodeURIComponent(startQuery)));
   };
 
@@ -43,14 +42,15 @@ const SearchQuery = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchMatchNames());
+    if (!allMatches.length) {
+      dispatch(fetchMatchNames());
+    }
   }, []);
 
   useEffect(() => {
     if (typeof timeoutID === 'number') {
       console.log('timeout reset');
       clearTimeout(timeoutID);
-      setFuzzResult('Loading...');
     }
     if (formVal.length) {
       setFuzzResult('Loading...');
@@ -61,6 +61,37 @@ const SearchQuery = () => {
       );
     }
   }, [formVal]);
+
+  useEffect(() => (clearAll()), []);
+
+  const FuzzResults = (props) => {
+    const { fuzzReturn } = props;
+
+    return (
+      <ul id="fuzz-results">
+        {Array.isArray(fuzzReturn)
+          ? fuzzReturn.map((resultObj) => (
+            <button type="button" key="resultObj.item" onClick={handleClick}>
+              {resultObj.item}
+            </button>
+          ))
+          : fuzzReturn}
+      </ul>
+    );
+  };
+
+  const StartMatchDiv = (props) => {
+    const { matchCheck } = props;
+
+    return (
+      matchCheck ? (
+        <div id="start-match">
+          <p>Viewing results for:</p>
+          <p>{matchCheck}</p>
+        </div>
+      ) : null
+    );
+  };
 
   return (
     <div id="search-default">
@@ -78,27 +109,16 @@ const SearchQuery = () => {
         <div id="under-searchbar">
           <button
             type="button"
-            disabled={fuzzResult.length && fuzzResult !== "Loading..." ? false : true}
-            onClick={fuzzResult.length && fuzzResult !== "Loading..." ? handleSubmit : null}
+            disabled={!(fuzzResult.length && fuzzResult !== 'Loading...')}
+            onClick={fuzzResult.length && fuzzResult !== 'Loading...' ? handleSubmit : null}
           >
             SEARCH
           </button>
           {fuzzResult.length ? (
-            <ul id="fuzz-results">
-              {Array.isArray(fuzzResult)
-                ? fuzzResult.map((resultObj) => (
-                    <li key="resultObj.item" onClick={handleClick}>
-                      {decodeURI(resultObj.item)}
-                    </li>
-                  ))
-                : fuzzResult}
-            </ul>
-          ) : startMatch ? (
-            <div id="start-match">
-              <p>Viewing results for:</p>
-              <p>{startMatch}</p>
-            </div>
-          ) : null}
+            <FuzzResults fuzzReturn={fuzzResult} />
+          ) : (
+            <StartMatchDiv matchCheck={startMatch} />
+          ) }
         </div>
       </form>
     </div>

@@ -1,28 +1,23 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios'
-import regeneratorRuntime from "regenerator-runtime";
+import axios from 'axios';
 
 export const fetchResults = createAsyncThunk(
   'results/fetch',
-  async (startMatch, thunkAPI) => {
+  async (startMatch) => {
     const { data } = await axios.get(`/api/match/results?m=${startMatch}`);
     return data;
-  }
-)
+  },
+);
 
 const resultsSlice = createSlice({
   name: 'results',
   initialState: [],
   reducers: {
-    clearResults: (state) => {
-      return [];
-    }
+    clearResults: () => [],
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchResults.fulfilled, (start, action) => {
-      return action.payload;
-    })
-  }
+    builder.addCase(fetchResults.fulfilled, (start, action) => action.payload);
+  },
 });
 
 const { actions, reducer } = resultsSlice;

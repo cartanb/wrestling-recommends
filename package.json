@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server",
+    "start": "nodemon server",
     "build": "webpack",
     "build-dev": "webpack -w",
     "start-dev": "npm run build-dev & nodemon server"
@@ -23,7 +23,9 @@
     "neo4j-driver": "^4.4.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1",
+    "redux-thunk": "^2.4.1",
     "regenerator-runtime": "^0.13.9"
   },
   "devDependencies": {

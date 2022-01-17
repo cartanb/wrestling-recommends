@@ -6,8 +6,8 @@ import results from './results';
 const store = configureStore({
   reducer: { search, results },
   middleware: [thunk],
-  devTools: true
-})
+  devTools: true,
+});
 
 export default store;
 export * from './search';

@@ -1,10 +1,10 @@
 module.exports = {
   entry: [
-    './client/index.js'
+    './client/index.jsx',
   ],
   output: {
     path: __dirname,
-    filename: './public/bundle.js'
+    filename: './public/bundle.js',
   },
   module: {
     rules: [
@@ -14,14 +14,21 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           presets: [
-            '@babel/preset-react'
-          ]
-        }
-      }
-    ]
+            '@babel/preset-react',
+          ],
+        },
+      },
+    ],
+  },
+  resolve: {
+    extensions: [
+      '',
+      '.js',
+      '.jsx',
+    ],
   },
   watchOptions: {
     stdin: true,
   },
-  mode: 'production'
-}
+  mode: 'production',
+};
